@@ -25,8 +25,9 @@ The Lambda function updates EC2 security groups to perform containment, and SNS 
 EventBridge schema discovery is enabled on the default event bus so GuardDuty findings can be inspected and matched against your rule.
 
 ## 🔐 IAM Role: EventBridge Execution Role
-Screenshot: eventbridge_role IAM Role  
-(Insert screenshot here)
+
+![EventBridge Execution Role](screenshots/eventbridge-role-permissions.png)
+
 
 This role allows EventBridge to invoke Lambda and publish to SNS.
 
