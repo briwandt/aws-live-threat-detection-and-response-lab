@@ -32,19 +32,23 @@ Screenshot: eventbridge_role IAM Role
 
 This role allows EventBridge to invoke Lambda and publish to SNS.
 
-Trust Policy
+### **Trust Policy**
 
-json
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": { "Service": "events.amazonaws.com" },
+      "Principal": {
+        "Service": "events.amazonaws.com"
+      },
       "Action": "sts:AssumeRole"
     }
   ]
 }
+```
+
 Attached Policies
 
 AWSLambda_FullAccess
