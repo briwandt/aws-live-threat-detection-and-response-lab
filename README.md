@@ -149,41 +149,41 @@ Only Critical findings trigger the EventBridge rule.
 
 ## 🧪 Lab Steps
 
-1. **1️⃣ Enable EventBridge Schema Discovery**  
+**1️⃣ Enable EventBridge Schema Discovery**  
    - Navigate to **EventBridge → Event buses**  
    - Under **Default event bus**, select **Start discovery**
 
-2. **2️⃣ Enable GuardDuty**  
+**2️⃣ Enable GuardDuty**  
    - Open **GuardDuty**  
    - Click **Get started → Enable GuardDuty**
 
-3. **3️⃣ Create an EC2 Instance**  
+**3️⃣ Create an EC2 Instance**  
    - Launch an Ubuntu instance named **Web_Server**  
    - Enable **SSH**, **HTTP**, and **HTTPS**  
    - Ensure **Auto‑Assign Public IP** is enabled  
 
-4. **4️⃣ Create the Containment Security Group**  
+**4️⃣ Create the Containment Security Group**  
    - **Name:** `Containment`  
    - **Inbound rule:** SSH (22) from Anywhere *(lab only)*  
 
-5. **5️⃣ Create the Lambda Execution Role**  
+**5️⃣ Create the Lambda Execution Role**  
    - Create a role for **Lambda**  
    - Attach: `AmazonEC2FullAccess`  
    - **Name:** `Lambda_Role`  
 
-6. **6️⃣ Create the EventBridge Execution Role**  
+**6️⃣ Create the EventBridge Execution Role**  
    - Create a role with a **Custom trust policy**  
    - Attach:  
      - `AWSLambda_FullAccess`  
      - `AmazonSNSFullAccess`  
    - **Name:** `EventBridge_Role`  
 
-7. **7️⃣ Create the SNS Topic & Subscription**  
+**7️⃣ Create the SNS Topic & Subscription**  
    - **Topic name:** `Containment_Notification`  
    - Create an **email subscription**  
    - Confirm the subscription via email  
 
-8. **8️⃣ Create the Lambda Function**  
+**8️⃣ Create the Lambda Function**  
    - **Name:** `Containment`  
    - **Runtime:** Python 3.13  
    - **Execution role:** `Lambda_Role`  
@@ -193,7 +193,7 @@ Only Critical findings trigger the EventBridge rule.
      - **Security Group ID**  
    - Deploy the function  
 
-9. **9️⃣ Create the EventBridge Rule**  
+**9️⃣ Create the EventBridge Rule**  
    - **Name:** `Critical_Containment`  
    - Paste JSON from `Event_Pattern_Critical.json`  
    - **Target 1:** Lambda → `containment`  
@@ -201,7 +201,7 @@ Only Critical findings trigger the EventBridge rule.
    - **Execution role:** `eventbridge_role`  
    - Create the rule and wait **5 minutes**  
 
-10. **🔟 Trigger GuardDuty Sample Findings**  
+**🔟 Trigger GuardDuty Sample Findings**  
     - In GuardDuty → **Settings → Sample findings → Generate sample findings**  
     - Wait up to **7 minutes**  
     - EC2 instance security group will update to **Containment**  
