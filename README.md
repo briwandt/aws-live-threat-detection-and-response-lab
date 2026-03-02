@@ -182,9 +182,9 @@ Create role with Custom trust policy
 
 Attach:
 
-AWSLambda_FullAccess
+- AWSLambda_FullAccess
 
-AmazonSNSFullAccess
+- AmazonSNSFullAccess
 
 Name: EventBridge_Role
 
