@@ -55,9 +55,10 @@ AWSLambda_FullAccess
 AmazonSNSFullAccess
 
 ## 📨 SNS Topic & Subscription
-Screenshot: SNS Subscription (Pending)  
-Screenshot: SNS Subscription (Confirmed)  
-(Insert screenshots here)
+
+
+![SNS Subscription Confirmed](screenshots/sns-subscription-confirmed.png)
+
 
 Topic: containment_notification  
 Protocol: Email
@@ -127,8 +128,6 @@ SNS topic: containment_notification
 Execution role: eventbridge_role
 
 ## 🛡️ GuardDuty Findings Feed
-Screenshot: GuardDuty Findings Dashboard  
-(Insert screenshot here)
 
 GuardDuty generates a variety of simulated findings, including:
 
