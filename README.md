@@ -10,6 +10,10 @@ EventBridge applies a rule to filter findings with severity **9.0–10.0**.
 An IAM role allows EventBridge to invoke a Lambda function and publish to SNS.  
 The Lambda function updates EC2 security groups to perform containment, and SNS sends an email alert to the responder.
 
+
+![Architecture Overview](screenshots/architecture-overview.png)
+
+
 **Flow:**  
 **GuardDuty → EventBridge → Lambda + SNS → EC2 isolated + email alert delivered**
 
