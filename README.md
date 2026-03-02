@@ -189,11 +189,12 @@ AmazonSNSFullAccess
 Name: EventBridge_Role
 
 7️⃣ Create the SNS Topic & Subscription
+
 Topic name: Containment_Notification
 
-Create email subscription
+Create an email subscription
 
-Confirm via email
+Confirm the subscription via email
 
 8️⃣ Create the Lambda Function
 Name: Containment
