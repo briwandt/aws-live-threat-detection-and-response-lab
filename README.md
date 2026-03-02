@@ -86,8 +86,9 @@ Retrieves the instance’s network interfaces
 Applies the Containment security group
 
 ## 🎯 EventBridge Rule: Critical GuardDuty Findings
-Screenshot: EventBridge Rule with Two Targets  
-(Insert screenshot here)
+
+![GuardDuty Findings Dashboard](screenshots/guardduty-findings-dashboard.png)
+
 
 This rule listens for GuardDuty findings with severity 9.0–10.0.
 
