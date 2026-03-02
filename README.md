@@ -4,20 +4,15 @@ This lab demonstrates how to build an automated threat‑detection and containme
 This project simulates a real‑world cloud incident response pipeline and showcases automated remediation patterns used by security engineering teams.
 
 ## 📌 Architecture Overview
-GuardDuty generates or simulates findings.
 
-EventBridge receives all findings on the default event bus.
+GuardDuty generates or simulates findings, which are received by EventBridge on the default event bus.  
+EventBridge applies a rule to filter findings with severity **9.0–10.0**.  
+An IAM role allows EventBridge to invoke a Lambda function and publish to SNS.  
+The Lambda function updates EC2 security groups to perform containment, and SNS sends an email alert to the responder.
 
-EventBridge rule filters for severity 9.0–10.0.
+**Flow:**  
+**GuardDuty → EventBridge → Lambda + SNS → EC2 isolated + email alert delivered**
 
-IAM role allows EventBridge to invoke Lambda and publish to SNS.
-
-Lambda performs containment by updating EC2 security groups.
-
-SNS sends an email alert to the responder.
-
-Flow:  
-GuardDuty → EventBridge → Lambda + SNS → EC2 isolated + email alert delivered
 
 ## 🚌 EventBridge Default Event Bus
 
