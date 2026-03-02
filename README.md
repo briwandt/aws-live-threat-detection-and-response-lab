@@ -199,7 +199,7 @@ Only Critical findings trigger the EventBridge rule.
    - **Target 1:** Lambda → `containment`  
    - **Target 2:** SNS → `containment_notification`  
    - **Execution role:** `eventbridge_role`  
-   - Create the rule and wait **5 minutes**  
+   - Create the rule and wait **5 minutes**
 
 **🔟 Trigger GuardDuty Sample Findings
 - In GuardDuty → **Settings → Sample findings → Generate sample findings**
