@@ -148,92 +148,64 @@ Multi‑signal attack sequences (Critical)
 Only Critical findings trigger the EventBridge rule.
 
 ## 🧪 Lab Steps
-1️⃣ Enable EventBridge Schema Discovery
-Navigate to EventBridge → Event buses
 
-Under Default event bus, select Start discovery
+1. **1️⃣ Enable EventBridge Schema Discovery**  
+   - Navigate to **EventBridge → Event buses**  
+   - Under **Default event bus**, select **Start discovery**
 
-2️⃣ Enable GuardDuty
-Open GuardDuty
+2. **2️⃣ Enable GuardDuty**  
+   - Open **GuardDuty**  
+   - Click **Get started → Enable GuardDuty**
 
-Click Get started → Enable GuardDuty
+3. **3️⃣ Create an EC2 Instance**  
+   - Launch an Ubuntu instance named **Web_Server**  
+   - Enable **SSH**, **HTTP**, and **HTTPS**  
+   - Ensure **Auto‑Assign Public IP** is enabled  
 
-3️⃣ Create an EC2 Instance
-Launch an Ubuntu instance named Web_Server
+4. **4️⃣ Create the Containment Security Group**  
+   - **Name:** `Containment`  
+   - **Inbound rule:** SSH (22) from Anywhere *(lab only)*  
 
-Enable SSH, HTTP, and HTTPS
+5. **5️⃣ Create the Lambda Execution Role**  
+   - Create a role for **Lambda**  
+   - Attach: `AmazonEC2FullAccess`  
+   - **Name:** `Lambda_Role`  
 
-Ensure Auto‑Assign Public IP is enabled
+6. **6️⃣ Create the EventBridge Execution Role**  
+   - Create a role with a **Custom trust policy**  
+   - Attach:  
+     - `AWSLambda_FullAccess`  
+     - `AmazonSNSFullAccess`  
+   - **Name:** `EventBridge_Role`  
 
-4️⃣ Create the Containment Security Group
-Name: Containment
+7. **7️⃣ Create the SNS Topic & Subscription**  
+   - **Topic name:** `Containment_Notification`  
+   - Create an **email subscription**  
+   - Confirm the subscription via email  
 
-Inbound rule: SSH (22) from Anywhere (lab only)
+8. **8️⃣ Create the Lambda Function**  
+   - **Name:** `Containment`  
+   - **Runtime:** Python 3.13  
+   - **Execution role:** `Lambda_Role`  
+   - Paste the code from `Lambda.py`  
+   - Replace:  
+     - EC2 **Instance ID**  
+     - **Security Group ID**  
+   - Deploy the function  
 
-5️⃣ Create the Lambda Execution Role
-Create role for Lambda
+9. **9️⃣ Create the EventBridge Rule**  
+   - **Name:** `Critical_Containment`  
+   - Paste JSON from `Event_Pattern_Critical.json`  
+   - **Target 1:** Lambda → `containment`  
+   - **Target 2:** SNS → `containment_notification`  
+   - **Execution role:** `eventbridge_role`  
+   - Create the rule and wait **5 minutes**  
 
-Attach AmazonEC2FullAccess
-
-Name: Lambda_Role
-
-6️⃣ Create the EventBridge Execution Role
-Create role with Custom trust policy
-
-Attach:
-
-AWSLambda_FullAccess
-
-AmazonSNSFullAccess
-
-Name: EventBridge_Role
-
-7️⃣ Create the SNS Topic & Subscription
-
-Topic name: Containment_Notification
-
-Create an email subscription
-
-Confirm the subscription via email
-
-8️⃣ Create the Lambda Function
-Name: Containment
-
-Runtime: Python 3.13
-
-Execution role: Lambda_Role
-
-Paste code from Lambda.py
-
-Replace:
-
-Instance ID
-
-Security Group ID
-
-Deploy the function
-
-9️⃣ Create the EventBridge Rule
-Name: Critical_Containment
-
-Paste JSON from Event_Pattern_Critical.json
-
-Target 1: Lambda → containment
-
-Target 2: SNS → containment_notification
-
-Execution role: eventbridge_role
-
-Create rule and wait 5 minutes
-
-🔟 Trigger GuardDuty Sample Findings
-In GuardDuty → Settings → Sample findings → Generate sample findings
-
-Wait up to 7 minutes
-
-EC2 instance security group will update to Containment
-
-You will receive three SNS email alerts
+10. **🔟 Trigger GuardDuty Sample Findings**  
+    - In GuardDuty → **Settings → Sample findings → Generate sample findings**  
+    - Wait up to **7 minutes**  
+    - EC2 instance security group will update to **Containment**  
+    - You will receive **three SNS email alerts**
 
 ## 🏁 Outcome
 This project demonstrates:
