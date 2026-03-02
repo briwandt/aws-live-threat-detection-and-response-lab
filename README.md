@@ -67,8 +67,9 @@ Endpoint: Your email address
 SNS delivers alerts whenever the EventBridge rule is triggered.
 
 ## ⚙️ Lambda Containment Function
-Screenshot: Lambda Code Editor  
-(Insert screenshot here)
+
+![Lambda Function Deployment](screenshots/lambda-containment-function.png)
+
 
 The Lambda function isolates the EC2 instance by replacing its security groups with a restrictive “Containment” group.
 
