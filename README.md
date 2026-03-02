@@ -201,8 +201,10 @@ Only Critical findings trigger the EventBridge rule.
    - **Execution role:** `eventbridge_role`  
    - Create the rule and wait **5 minutes**  
 
-### 🔟 Trigger GuardDuty Sample Findings
+**🔟 Trigger GuardDuty Sample Findings
+
 - In GuardDuty → **Settings → Sample findings → Generate sample findings**
+
 - Wait up to **7 minutes**
 - EC2 instance security group will update to **Containment**
 - You will receive **three SNS email alerts**
