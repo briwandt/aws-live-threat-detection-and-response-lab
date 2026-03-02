@@ -16,7 +16,7 @@ The Lambda function updates EC2 security groups to perform containment, and SNS 
 
 ## 🚌 EventBridge Default Event Bus
 
-Screenshot: EventBridge Default Event Bus  
+![EventBridge Default Event Bus](screenshots/eventbridge-default-bus.png)
 
 
 EventBridge schema discovery is enabled on the default event bus so GuardDuty findings can be inspected and matched against your rule.
