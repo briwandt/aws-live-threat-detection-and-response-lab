@@ -88,19 +88,31 @@ Screenshot: EventBridge Rule with Two Targets
 
 This rule listens for GuardDuty findings with severity 9.0–10.0.
 
-Event Pattern
 
-json
+### **Event Pattern**
+
+```json
 {
   "source": ["aws.guardduty"],
   "detail-type": ["GuardDuty Finding"],
   "detail": {
     "severity": [
-      9, 9.1, 9.2, 9.3, 9.4, 9.5,
-      9.6, 9.7, 9.8, 9.9, 10
+      9,
+      9.1,
+      9.2,
+      9.3,
+      9.4,
+      9.5,
+      9.6,
+      9.7,
+      9.8,
+      9.9,
+      10
     ]
   }
 }
+```
+
 Targets
 
 Lambda function: containment
